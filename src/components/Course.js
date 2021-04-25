@@ -5,6 +5,8 @@ import { courseActions } from '../store/CourseSlice';
 
 const Course = (props) => {
 	const dispatch = useDispatch();
+	const courses = useSelector((state) => state.course.courses);
+	const selected = courses.find((course) => course.id === props.id);
 
 	const courseHandler = () => {
 		dispatch(
@@ -16,15 +18,25 @@ const Course = (props) => {
 			})
 		);
 	};
+
+	const dropCourseHandler = () => {
+		dispatch(courseActions.dropCourse(selected.id));
+	};
 	return (
 		<>
 			<div style={{ backgroundColor: 'yellow' }}>
 				<h2 style={{ color: '#ff3333', fontWeight: 'bold' }}>{props.name}</h2>
-				<p>{props.description}</p>
+				<p style={{ color: 'blue' }}>{props.description}</p>
 				<div className={classes.d1}>
-					<button style={{ borderRadius: '12px', fontWeight: 'bold' }} onClick={courseHandler}>
-						Select Course
-					</button>
+					{selected ? (
+						<button style={{ borderRadius: '12px', fontWeight: 'bold' }} onClick={dropCourseHandler}>
+							Drop Course
+						</button>
+					) : (
+						<button style={{ borderRadius: '12px', fontWeight: 'bold' }} onClick={courseHandler}>
+							Select Course
+						</button>
+					)}
 
 					<p>Credits - {props.credits}</p>
 				</div>

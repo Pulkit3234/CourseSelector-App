@@ -1,7 +1,7 @@
 .body {
-	background: #6c69ab;
+	background: #E59866;
 	height: 50vh;
-	width: 40vw;
+	width: 45vw;
 	position: absolute;
 	right: 150px;
 	top: 150px;
@@ -20,3 +20,4 @@
 .btn:hover {
 	opacity: 0.7;
 }
+

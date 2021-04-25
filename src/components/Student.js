@@ -6,34 +6,34 @@ import { courseActions } from '../store/CourseSlice';
 const Student = (props) => {
 	const [show, setShow] = useState(false);
 	const [credits, setCredits] = useState(15);
+	const [isAuth, setIsAuth] = useState(false);
 	let courseSelected = {};
 	const dispatch = useDispatch();
+	const value = credits === 0;
 
 	const courseState = useSelector((state) => state.course);
-	const id = courseState.selectedId;
+
+	const length = courseState.courses.length === 0;
+
 	const creditsRem = courseState.credits;
 
-	if (id) {
-		courseSelected = courseState.courses.find((course) => course.id === id);
-	} else {
-		courseSelected = '';
-	}
-
 	const courses = courseState.courses.map((course) => {
-		console.log('array', course.name);
 		return (
 			<div>
 				<li style={{ listStyle: 'none' }}>
-					<div
-						style={{
-							paddingRight: '50px',
-							height: '10px',
-							width: '20px',
+					<div style={{}}>
+						<p
+							style={{
+								marginRight: '30px',
+								marginBottom: '10px',
+								height: '10px',
+								width: '20px',
 
-							color: 'white',
-						}}
-					>
-						<p>{course.name}</p>
+								color: 'white',
+							}}
+						>
+							{course.name}
+						</p>
 					</div>
 				</li>
 			</div>
@@ -46,66 +46,76 @@ const Student = (props) => {
 	}, [creditsRem]);
 
 	const dropCourseHandler = () => {
-		dispatch(courseActions.dropCourse(props.id));
+		console.log('this');
 	};
 
 	const data = (
 		<div className={classes.body}>
-			<h2>You Can Select a Maximum of 5 Courses Only</h2>
+			<h2 style={{ background: 'yellow', height: '25px' }}>You Can Select Maximum of 5 Courses Only</h2>
 			<div>
 				<div
 					style={{
 						display: 'flex',
 						flexDirection: 'row',
-						justifyContent: 'space-evenly',
+						justifyContent: 'space-around',
 
 						alignItems: 'center',
+						background: 'green',
+						height: '80px',
+						textAlign: 'center',
 					}}
 				>
-					<span>Selected Courses -</span> {courses}
+					<div style={{ color: 'yellow', fontWeight: 'bold', paddingTop: '17px' }}>Selected Courses -</div>
+					{courses}
 				</div>
 			</div>
 			<hr style={{ marginTop: '30px' }} />
 			<div>
-				<h3>{courseSelected.name}</h3>
-				<button disabled={credits === 15 || !id} onClick={dropCourseHandler} className={classes.btn}>
-					Drop Course
-				</button>
+				<h3>{courseSelected?.name}</h3>
 			</div>
 			<hr />
 			<div style={{ marginTop: '40px' }}>
-				<button style={{ marginRight: '20px' }} disabled={credits !== 0}>
-					Lock Selected Courses
+				{!isAuth ? <h3 style={{ color: 'white' }}>Login To Register Courses</h3> : ''}
+				<button
+					disabled={credits !== 0}
+					style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px', marginRight: '10px' }}
+				>
+					Register Selected Courses
 				</button>
-				<button disabled={!show}>Download Form</button>
+				<button disabled={!show} style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px' }}>
+					Download Form
+				</button>
 			</div>
-			<p>{`Credits Remaining - ${credits}`}</p>
+			<h3>{`Credits Remaining - ${credits}`}</h3>
 		</div>
 	);
 
 	const alternateData = (
 		<div className={classes.body}>
-			<h2>You Can Select a Maximum of 5 Courses Only</h2>
-			<h3>No Course Selected</h3>
+			<h2 style={{ background: 'yellow', height: '25px' }}>You Can Select Maximum of 5 Courses Only</h2>
+			<h3 style={{ color: 'white' }}>No Course Selected</h3>
 			<hr style={{ marginTop: '30px' }} />
-			<div>
-				<h3>{courseSelected.name}</h3>
-			</div>
+
 			<hr />
 			<div style={{ marginTop: '40px' }}>
-				<button style={{ marginRight: '20px' }} disabled={credits !== 0}>
-					Lock Selected Courses
+				<button
+					disabled={true}
+					style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px', marginRight: '10px' }}
+				>
+					Register Selected Courses
 				</button>
-				<button disabled={!show}>Download Form</button>
+				<button disabled={!show} style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px' }}>
+					Download Form
+				</button>
 			</div>
-			<p>{`Credits Remaining - ${credits}`}</p>
+			<h3>{`Credits Remaining - ${credits}`}</h3>
 		</div>
 	);
 
 	return (
 		<>
-			{courseSelected && data}
-			{!courseSelected && alternateData}
+			{!length && data}
+			{length && alternateData}
 		</>
 	);
 };
