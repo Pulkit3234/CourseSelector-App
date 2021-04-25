@@ -1,0 +1,33 @@
+.body {
+	height: 60vh;
+	width: 100%;
+	background: yellow;
+	margin-top: 0px;
+	font-family: 'PT Sans', sans-serif;
+}
+
+.d1 {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-weight: bold;
+	align-items: center;
+}
+
+.d1 button {
+	background-color: #00b300;
+	color: white;
+	height: 40px;
+	cursor: pointer;
+	font-weight: 'bold';
+	font-family: 'PT Sans', sans-serif;
+	border-radius: '40px';
+}
+
+.d1 button:hover {
+	opacity: 0.7;
+}
+.d1 p {
+	margin-right: 30px;
+	color: blue;
+}
