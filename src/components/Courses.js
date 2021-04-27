@@ -1,4 +1,5 @@
 import Course from './Course';
+
 const data = [
 	{
 		id: 'c1',
@@ -74,6 +75,7 @@ const data = [
 	},
 ];
 const Courses = () => {
+
 	const courseList = data.map((course) => {
 		return (
 			<Course

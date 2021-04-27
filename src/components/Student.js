@@ -2,16 +2,20 @@ import classes from './Student.module.css';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { courseActions } from '../store/CourseSlice';
+import { registerCoursesSend } from '../store/CourseSlice';
 
 const Student = (props) => {
 	const [show, setShow] = useState(false);
 	const [credits, setCredits] = useState(15);
-	const [isAuth, setIsAuth] = useState(false);
-	let courseSelected = {};
+	//const [isAuth, setIsAuth] = useState(false);
+
 	const dispatch = useDispatch();
 	const value = credits === 0;
 
 	const courseState = useSelector((state) => state.course);
+	const isAuth = useSelector((state) => state.auth.isAuth);
+
+	const name = useSelector((state) => state.auth.authName);
 
 	const length = courseState.courses.length === 0;
 
@@ -45,8 +49,9 @@ const Student = (props) => {
 		setCredits(creditsRem);
 	}, [creditsRem]);
 
-	const dropCourseHandler = () => {
-		console.log('this');
+	const registerCourseHandler = () => {
+		console.log(courseState.courses);
+		dispatch(registerCoursesSend(courseState.courses));
 	};
 
 	const data = (
@@ -70,15 +75,15 @@ const Student = (props) => {
 				</div>
 			</div>
 			<hr style={{ marginTop: '30px' }} />
-			<div>
-				<h3>{courseSelected?.name}</h3>
-			</div>
+
 			<hr />
 			<div style={{ marginTop: '40px' }}>
 				{!isAuth ? <h3 style={{ color: 'white' }}>Login To Register Courses</h3> : ''}
+
 				<button
-					disabled={credits !== 0}
+					disabled={credits !== 0 || !name}
 					style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px', marginRight: '10px' }}
+					onClick={registerCourseHandler}
 				>
 					Register Selected Courses
 				</button>

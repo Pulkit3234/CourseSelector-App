@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Course from '../components/Course';
+import axios from 'axios';
 
 const CourseSlice = createSlice({
 	name: 'course',
@@ -29,8 +30,18 @@ const CourseSlice = createSlice({
 
 			state.credits = state.credits + 3;
 		},
+		registerCourses(state, action) {
+			state.courses = action.payload.data;
+		},
 	},
 });
+
+export const registerCoursesSend = (courses) => {
+	return async (dispatch) => {
+		const { data } = await axios.post('http://localhost:8000/register', courses);
+		dispatch(CourseSlice.actions.registerCourses(data));
+	};
+};
 
 export const courseActions = CourseSlice.actions;
 export default CourseSlice;

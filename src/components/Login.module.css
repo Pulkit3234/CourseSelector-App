@@ -1,0 +1,33 @@
+.body {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 100px;
+
+	justify-content: center;
+
+	width: inherit;
+	align-items: center;
+	width : 30%;
+	
+}
+
+.body input
+ {
+	width: 30%;
+	align-items: center;
+	padding-top: 10px;
+}
+
+.body label {
+	display: flex;
+	width: 30%;
+	align-items: flex-start;
+}
+
+.design {
+	width: 100vw;
+	background: red;
+	display: flex;
+	justify-content: center;
+}

@@ -32,3 +32,12 @@
 	opacity: 0.6;
 	background-color: red;
 }
+
+.active {
+	color: yellow;
+	text-decoration: none;
+}
+.notactive {
+	color: black;
+	text-decoration: none;
+}
