@@ -7,8 +7,10 @@ const Course = (props) => {
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.course.courses);
 	const selected = courses.find((course) => course.id === props.id);
+	const obj = useSelector((state) => state.course);
 
 	const courseHandler = () => {
+		console.log(obj.credits);
 		dispatch(
 			courseActions.selectCourse({
 				id: props.id,
