@@ -3,21 +3,20 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { courseActions } from '../store/CourseSlice';
 import { registerCoursesSend, unsubmitCourseAction } from '../store/CourseSlice';
+import { saveAs } from 'file-saver';
 import axios from 'axios';
 
 const Student = (props) => {
 	const [show, setShow] = useState(false);
-	//const [credits, setCredits] = useState(15);
-	//const [isAuth, setIsAuth] = useState(false);
+
 	const [token, setToken] = useState('');
 	const [register, setRegister] = useState('');
 
 	const [selected, setSelected] = useState(false);
 
 	const dispatch = useDispatch();
-	//const value = credits === 0;
+
 	const courseState = useSelector((state) => state.course);
-	//let selected = false;
 
 	const isAuth = useSelector((state) => state.auth.isAuth);
 
@@ -38,6 +37,7 @@ const Student = (props) => {
 						courseActions.registerCourses({
 							subjects: data.user[0].subjects,
 							register: data.user[0].register,
+							credits: data.user[0].credits,
 						})
 					);
 				}
@@ -94,11 +94,31 @@ const Student = (props) => {
 
 	const registerCourseHandler = () => {
 		console.log(courseState.courses);
-		dispatch(registerCoursesSend(courseState.courses, JSON.parse(localStorage.getItem('token')).name));
+		if (localStorage.getItem('token')) {
+			console.log('register');
+			dispatch(registerCoursesSend(courseState.courses, JSON.parse(localStorage.getItem('token')).name));
+		}
 	};
 
 	const unsubmitCourseHandler = () => {
 		dispatch(unsubmitCourseAction([], JSON.parse(localStorage.getItem('token')).name));
+	};
+
+	//for handling pdf form download
+	const pdfDownloadHandler = () => {
+		axios
+			.post('http://localhost:8000/create-pdf', {
+				courses: courseState.courses,
+				name: JSON.parse(localStorage.getItem('token')).name,
+			})
+			.then(() => axios.get('http://localhost:8000/fetch-pdf', { responseType: 'blob' }))
+			.then((res) => {
+				console.log(res.data);
+				const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+
+				saveAs(pdfBlob, 'newPdf.pdf');
+			})
+			.catch((error) => console.log(error));
 	};
 
 	const data = (
@@ -141,10 +161,16 @@ const Student = (props) => {
 				>
 					Unsubmit Courses
 				</button>
-				<button disabled={!show} style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px' }}>
+				<button
+					disabled={!courseState.register}
+					style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px' }}
+					onClick={pdfDownloadHandler}
+				>
 					Download Form
 				</button>
-				{courseState.register && isAuth && <h4>You have Successfully Registered the Courses</h4>}
+				{courseState.register && isAuth && (
+					<h4 style={{ color: 'white' }}>You have Successfully Registered the Courses</h4>
+				)}
 			</div>
 			<h3>{`Credits Remaining - ${credits}`}</h3>
 		</div>
@@ -170,7 +196,10 @@ const Student = (props) => {
 				>
 					Unsubmit Courses
 				</button>
-				<button disabled={!show} style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px' }}>
+				<button
+					disabled={!courseState.register}
+					style={{ backgroundColor: 'orange', padding: '10px', borderRadius: '20px' }}
+				>
 					Download Form
 				</button>
 				{courseState.register && isAuth && <h4>You have Successfully Registered the Courses</h4>}

@@ -4,14 +4,24 @@ import Student from './components/Student';
 import Signup from './components/Signup';
 import { BrowserRoute, Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
-import React from 'react';
-import Pdf from './components/Generatepdf';
+import React, { useState } from 'react';
+import Modal from './components/Layout/Modal';
 
 function App() {
-	console.log(React.version);
+	const [show, setShow] = useState(false);
+
+	
+	const showModalHandler = () => {
+		setShow(true);
+	};
+
+	const closeModalHandler = () => {
+		setShow(false);
+	};
 	return (
 		<>
-			<Header />
+			<Header show={showModalHandler} />
+			{show && <Modal show={closeModalHandler} />}
 
 			<Route path="/" exact>
 				<Courses />
@@ -20,10 +30,10 @@ function App() {
 			</Route>
 
 			<Route path="/signup" exact>
-				<Signup />
+				<Signup  />
 			</Route>
 			<Route path="/login" exact>
-				<Login />
+				<Login  />
 			</Route>
 		</>
 	);

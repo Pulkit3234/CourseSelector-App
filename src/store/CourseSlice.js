@@ -37,6 +37,7 @@ const CourseSlice = createSlice({
 		registerCourses(state, action) {
 			state.courses = action.payload.subjects;
 			state.register = action.payload.register;
+			state.credits = action.payload.credits;
 			//state.credits = action.payload.credits;
 			//state.credits = 0;
 		},
@@ -54,7 +55,13 @@ export const registerCoursesSend = (courses, name) => {
 		console.log(courses, name);
 		const { data } = await axios.post('http://localhost:8000/register', { courses, name, register: true });
 		console.log(data);
-		dispatch(CourseSlice.actions.registerCourses({ subjects: data.user.subjects, register: data.user.register }));
+		dispatch(
+			CourseSlice.actions.registerCourses({
+				subjects: data.user.subjects,
+				register: data.user.register,
+				credits: data.user.credits,
+			})
+		);
 	};
 };
 
@@ -63,7 +70,13 @@ export const unsubmitCourseAction = (courses, name) => {
 		console.log(courses, name);
 		const { data } = await axios.post('http://localhost:8000/register', { courses, name, register: false });
 		console.log(data);
-		dispatch(CourseSlice.actions.registerCourses({ subjects: [], register: data.user.register }));
+		dispatch(
+			CourseSlice.actions.registerCourses({
+				subjects: [],
+				register: data.user.register,
+				credits: data.user.credits,
+			})
+		);
 		dispatch(CourseSlice.actions.creditHandle());
 	};
 };

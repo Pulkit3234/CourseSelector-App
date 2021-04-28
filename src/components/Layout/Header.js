@@ -3,27 +3,40 @@ import classes from './Header.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions } from '../../store/AuthSlice';
 import { courseActions } from '../../store/CourseSlice';
-import { useEffect } from 'react';
-const Header = () => {
+import { useEffect, useState } from 'react';
+
+const Header = ({ show }) => {
 	const history = useHistory();
 	//const name = useSelector((state) => state.auth.authName);
+	//const [name, setName] = useState('');
 	let name = '';
 	if (JSON.parse(localStorage.getItem('token'))) {
 		name = JSON.parse(localStorage.getItem('token')).name;
 	}
+	//console.log(name);
 
-	const isAuth = useSelector((state) => state.auth.isAuth);
+	//let authName = useSelector((state) => state.auth.authName);
+	//let authName = ''; */
+
+	const authName = useSelector((state) => state.auth);
+	console.log(authName);
+	
+
 	const dispatch = useDispatch();
 	const logoutHandler = (e) => {
 		dispatch(authActions.logout());
 		dispatch(courseActions.registerHandler());
 		history.push('/');
 	};
-	//let obj = JSON.parse(localStorage.getItem('token'));
+	
 
 	//for checking whether the token is present or not.(on refresh the user should be shown)
+	const modalShowHandler = () => {
+		show();
+	};
 
-	console.log(name);
+	//console.log(data.name);
+	//console.log(authName);
 	return (
 		<>
 			<ul className={classes.ul}>
@@ -34,9 +47,9 @@ const Header = () => {
 				</div>
 
 				<div>
-					{name && isAuth && <li style={{ color: 'white' }}>{`Hi ${name}`}</li>}
+					{name && authName.isAuth && <li style={{ color: 'white' }}>{`Hi ${name}`}</li>}
 					<li>
-						{name && isAuth ? (
+						{name && authName.isAuth ? (
 							<NavLink
 								to="/login"
 								exact
@@ -64,7 +77,7 @@ const Header = () => {
 					</li>
 					<li>Admin</li>
 
-					<li>?</li>
+					<li onClick={modalShowHandler}>?</li>
 				</div>
 			</ul>
 		</>

@@ -6,6 +6,7 @@ import { authActions } from '../store/AuthSlice';
 import { useDispatch } from 'react-redux';
 
 const Signup = () => {
+
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const [formData, setFormData] = useState({});
@@ -25,6 +26,7 @@ const Signup = () => {
 				console.log(data);
 
 				if (data.token) {
+					
 					dispatch(authActions.login(data));
 					history.push('/');
 				}

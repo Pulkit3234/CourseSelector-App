@@ -7,10 +7,13 @@ const Course = (props) => {
 	const dispatch = useDispatch();
 	const courses = useSelector((state) => state.course.courses);
 	const selected = courses.find((course) => course.id === props.id);
-	const obj = useSelector((state) => state.course);
+	const obj = useSelector((state) => state.auth);
+	const token = JSON.parse(localStorage.getItem('token'));
+	//console.log(obj.isAuth);
+	const objj = useSelector((state) => state.course);
 
 	const courseHandler = () => {
-		console.log(obj.credits);
+		console.log(objj);
 		dispatch(
 			courseActions.selectCourse({
 				id: props.id,

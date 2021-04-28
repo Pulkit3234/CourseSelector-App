@@ -1,0 +1,76 @@
+.modal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 4;
+	width: 100%;
+	height: 40px;
+	position: fixed;
+}
+
+.sub_modal {
+	align-items: center;
+	width: 40%;
+	height: 100%;
+	text-align: start;
+
+	transform: translateY(60px);
+}
+.c1 {
+	background-color: rgb(231, 62, 90);
+	height: 50px;
+	color: rgb(230, 240, 92);
+	font-weight: bold;
+	font-size: 27px;
+	box-shadow: 9px 10px 5px 0px rgba(68, 53, 53, 0.75);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal_backdrop {
+	background: rgb(88, 87, 87);
+	opacity: 0.8;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 3;
+	cursor: pointer;
+}
+
+.c2 {
+	background: rgb(218, 167, 74);
+	padding: 20px 5px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	box-shadow: 9px 10px 5px 0px rgba(68, 53, 53, 0.75);
+}
+
+.btn {
+	cursor: pointer;
+	color: white;
+
+	background: rgb(158, 113, 36);
+	width: 20%;
+	height: 25px;
+
+	text-align: center;
+	border-radius: 20px;
+
+	margin: auto;
+
+	font-weight: bold;
+	font-size: 17px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 35px;
+}
+
+.btn:hover {
+	opacity: 0.8;
+}
