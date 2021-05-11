@@ -53,7 +53,11 @@ const CourseSlice = createSlice({
 export const registerCoursesSend = (courses, name) => {
 	return async (dispatch) => {
 		console.log(courses, name);
-		const { data } = await axios.post('http://localhost:8000/register', { courses, name, register: true });
+		const { data } = await axios.post('https://courseselectapi.herokuapp.com/register', {
+			courses,
+			name,
+			register: true,
+		});
 		console.log(data);
 		dispatch(
 			CourseSlice.actions.registerCourses({
@@ -68,7 +72,11 @@ export const registerCoursesSend = (courses, name) => {
 export const unsubmitCourseAction = (courses, name) => {
 	return async (dispatch) => {
 		console.log(courses, name);
-		const { data } = await axios.post('http://localhost:8000/register', { courses, name, register: false });
+		const { data } = await axios.post('https://courseselectapi.herokuapp.com/register', {
+			courses,
+			name,
+			register: false,
+		});
 		console.log(data);
 		dispatch(
 			CourseSlice.actions.registerCourses({

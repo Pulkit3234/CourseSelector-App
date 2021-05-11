@@ -19,7 +19,7 @@ const Signup = () => {
 			try {
 				const { data } = await axios({
 					method: 'POST',
-					url: 'http://localhost:8000/login',
+					url: 'https://courseselectapi.herokuapp.com/login',
 					data: formData,
 				});
 

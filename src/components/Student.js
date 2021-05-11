@@ -28,7 +28,7 @@ const Student = (props) => {
 		const fetch = async () => {
 			try {
 				console.log(JSON.parse(localStorage.getItem('token')).name);
-				const { data } = await axios.get('http://localhost:8000/register', {
+				const { data } = await axios.get('https://courseselectapi.herokuapp.com/register', {
 					params: JSON.parse(localStorage.getItem('token')).name,
 				});
 				console.log(data.user[0]);
@@ -107,11 +107,11 @@ const Student = (props) => {
 	//for handling pdf form download
 	const pdfDownloadHandler = () => {
 		axios
-			.post('http://localhost:8000/create-pdf', {
+			.post('https://courseselectapi.herokuapp.com/create-pdf', {
 				courses: courseState.courses,
 				name: JSON.parse(localStorage.getItem('token')).name,
 			})
-			.then(() => axios.get('http://localhost:8000/fetch-pdf', { responseType: 'blob' }))
+			.then(() => axios.get('https://courseselectapi.herokuapp.com/fetch-pdf', { responseType: 'blob' }))
 			.then((res) => {
 				console.log(res.data);
 				const pdfBlob = new Blob([res.data], { type: 'application/pdf' });

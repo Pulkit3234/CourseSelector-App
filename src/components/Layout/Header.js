@@ -20,7 +20,6 @@ const Header = ({ show }) => {
 
 	const authName = useSelector((state) => state.auth);
 	console.log(authName);
-	
 
 	const dispatch = useDispatch();
 	const logoutHandler = (e) => {
@@ -28,7 +27,6 @@ const Header = ({ show }) => {
 		dispatch(courseActions.registerHandler());
 		history.push('/');
 	};
-	
 
 	//for checking whether the token is present or not.(on refresh the user should be shown)
 	const modalShowHandler = () => {
@@ -75,7 +73,6 @@ const Header = ({ show }) => {
 							Select Courses
 						</NavLink>
 					</li>
-					<li>Admin</li>
 
 					<li onClick={modalShowHandler}>?</li>
 				</div>
