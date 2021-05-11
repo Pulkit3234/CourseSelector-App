@@ -6,6 +6,7 @@ import { BrowserRoute, Route, Switch } from 'react-router-dom';
 import Login from './components/Login';
 import React, { useState } from 'react';
 import Modal from './components/Layout/Modal';
+import Footer from './components/Layout/Footer'
 
 function App() {
 	const [show, setShow] = useState(false);
@@ -35,6 +36,7 @@ function App() {
 			<Route path="/login" exact>
 				<Login  />
 			</Route>
+			<Footer/>
 		</>
 	);
 }
