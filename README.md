@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+## COURSE SELECTOR APP
+## SHOP ALL ECOMMERCE APP
+![image](https://user-images.githubusercontent.com/75886411/118428701-ad8aef00-b6ed-11eb-987f-6b61e4405b24.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Website - https://course-selector-app.netlify.app/
 
-## Available Scripts
+## About/Description
+This app is a course selection app with a maximum of 15 credits i.e the user can select a maximum of 5 courses of 3 credits each. User must make an account and login then only they can select and register the courses, after successfully registering for the courses the user can download the pdf containing registered courses, data of registering and name of the user. User can also unsubmit the registered courses and select fresh courses again. This app can be used by educationa institutions to make the courses selection process smooth and easy.
 
-In the project directory, you can run:
+## Functionalities
+* Easy to use interface.
+* Max. Credits to restrict the course selection to 5 courses.
+* Login/Signup 
+* PDF form download with registered courses
+* Unsubmit registered courses option
 
-### `yarn start`
+## Tech Stack
+### Frontend
+* HTML
+* CSS
+* JAVASCRIPT
+* REACT
+* REDUX(REDUX-TOOLKIT)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Backend
+* NODE/EXPRESS
+* MONGODB
+* JWT
+* BCRYPT
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Outcome/Learning
+This was a very good project in which I learnt the use of useEffect and redux state management, After the user registers the courses the redux store state changes and thereby useEffect comes into play and makes the request to backend to store the registered courses in the mongoDB database. This project was a very good project to help me grasp the redux(redux-toolkit) in depth with axios request to send data to the backend and how all that data is to be used/managed on the backend/server side.
 
-### `yarn test`
+## NPM Commands
+* `npm i` - installs all the dependencies
+* `npm start` - starts the frontend development server on your local machine.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
