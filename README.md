@@ -1,5 +1,4 @@
 ## COURSE SELECTOR APP
-## SHOP ALL ECOMMERCE APP
 ![image](https://user-images.githubusercontent.com/75886411/118428701-ad8aef00-b6ed-11eb-987f-6b61e4405b24.png)
 
 ## Live Website - https://course-selector-app.netlify.app/
